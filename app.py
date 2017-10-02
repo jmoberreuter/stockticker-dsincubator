@@ -1,5 +1,4 @@
 from flask import Flask, render_template, request, redirect
-import simplejson as json
 from bokeh.plotting import figure, output_file, save
 import pandas as pd
 import requests
@@ -12,10 +11,13 @@ def index():
 
 @app.route('/stockticker', methods = ['get', 'post'])
 def plotstockprices():
-    stockname = 'FB'
+    stockname = request.form['ticker']
     output_file("templates/stockticker.html")
     p = figure(title="stock price: "+stockname, x_axis_label='time', y_axis_label='USD', x_axis_type = 'datetime')
     date = list(pd.to_datetime(getstockprices(stockname)['Date']))
+    print request.form['features']
+    for feat in request.form['features']:
+        print feat
     price = list(getstockprices(stockname)['Close'])
     p.line(date, price, legend = stockname, line_width = 2)
     save(p)
