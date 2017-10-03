@@ -2,5 +2,5 @@ gunicorn==19.3.0
 requests==2.9.1
 flask==0.12.2
 pandas
-bokeh.plotting
 os
+bokeh
