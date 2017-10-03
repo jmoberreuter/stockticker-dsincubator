@@ -19,11 +19,11 @@ def plotstockprices():
     #set up the figure
     output_file("templates/stockticker.html")
     p = figure(title="stock price: "+stockname, x_axis_label='time', y_axis_label='USD', x_axis_type = 'datetime')
-    date = list(pd.to_datetime(stockdf['Date']))
+    date = list(pd.to_datetime(stockdf[(stockdf.Date >= request.form['from']) & (stockdf.Date <= request.form['to'])].Date))
     colors = ['blue','red','green','brown']
     for feat in request.form.getlist('features[]'):
-        price = list(pd.to_datetime(stockdf[feat.encode('utf-8')]))
-        p.line(date, price, legend = stockname+':'+feat, line_width = 0.5, color = colors.pop(0))
+        price = list(stockdf[(stockdf.Date >= request.form['from']) & (stockdf.Date <= request.form['to'])][feat.encode('utf-8')])
+        p.line(date, price, legend = stockname+': '+feat, line_width = 0.5, color = colors.pop(0))
     save(p)
     return render_template('stockticker.html')
 
