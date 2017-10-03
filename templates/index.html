@@ -12,13 +12,13 @@
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   </head>
-  <body>
+  <body onload="form.reset();">
     <!-- form -->
     <div class="container">
       <div class="row">
         <div class="col-lg-12 text-left">
           <h2>Stock ticker</h2>
-          <h4>Please enter the stock symbol, you want to plot</h1>
+          <h4>Please enter the stock symbol you want to plot</h1>
           <form id='input' method='post' action='stockticker'>	
           <p>Ticker symbol: <input type='text' name='ticker' placeholder='GOOG' /></p>
           <p>
@@ -28,8 +28,8 @@
           <input type="checkbox" name='features[]' value='Adj. Open' />Adjusted opening price<br/>
           </p>
           <p>
-          Starting date: <input type="date" name='from' />
-          End date: <input type="date" name='to' />
+          Starting date: <input type="date" name='from' value='2020-12-31'/>
+          End date: <input type="date" name='to' value='2000-01-01 />
           </p>
           <p><input type="submit" value="Submit"></p>
           </form>
