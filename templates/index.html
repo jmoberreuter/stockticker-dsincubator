@@ -3,8 +3,8 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="Skeleton application demoing Heroku and Flask integration.">
-    <meta name="author" content="@gotoariel">
+    <meta name="description" content="This is the solution to the 12-day milestone project by Johannes Oberreuter.">
+    <meta name="author" content="Johannes M. Oberreuter">
     <!-- <link rel="icon" href="favicon.ico"> -->
 
     <title>Data Incubater Stock Ticker Milestone Project</title>
@@ -22,10 +22,10 @@
           <form id='input' method='post' action='stockticker'>	
           <p>Ticker symbol: <input type='text' name='ticker' placeholder='GOOG' /></p>
           <p>
-          <input type="checkbox" name='features' value='close' />Closing price<br>
-          <input type="checkbox" name='features' value='adj_close' />Adjusted closing price<br>
-          <input type="checkbox" name='features' value='open' />Opening price<br>
-          <input type="checkbox" name='features' value='adj_open' />Adjusted opening price<br>
+          <input type="checkbox" name='features[]' value='Close' />Closing price<br/>
+          <input type="checkbox" name='features[]' value='Adj. Close' />Adjusted closing price<br/>
+          <input type="checkbox" name='features[]' value='Open' />Opening price<br/>
+          <input type="checkbox" name='features[]' value='Adj. Open' />Adjusted opening price<br/>
           </p>
           <p><input type="submit" value="Submit"></p>
           </form>

@@ -11,23 +11,21 @@ def index():
 
 @app.route('/stockticker', methods = ['get', 'post'])
 def plotstockprices():
+    #get the stock name and put the data into a dataframe
     stockname = request.form['ticker']
-    output_file("templates/stockticker.html")
-    p = figure(title="stock price: "+stockname, x_axis_label='time', y_axis_label='USD', x_axis_type = 'datetime')
-    date = list(pd.to_datetime(getstockprices(stockname)['Date']))
-    print request.form['features']
-    for feat in request.form['features']:
-        print feat
-    price = list(getstockprices(stockname)['Close'])
-    p.line(date, price, legend = stockname, line_width = 2)
-    save(p)
-    return render_template('stockticker.html')
-
-def getstockprices(tickerinput):
-    url = 'https://www.quandl.com/api/v3/datasets/WIKI/'+tickerinput+'/data.json?api_key=GNKyX_ZEQBue_DPmsymt'
+    url = 'https://www.quandl.com/api/v3/datasets/WIKI/'+stockname+'/data.json?api_key=GNKyX_ZEQBue_DPmsymt'
     jsondata = requests.get(url)
     stockdf = pd.DataFrame(jsondata.json()['dataset_data']['data'], columns=jsondata.json()['dataset_data']['column_names'])
-    return stockdf
+    #set up the figure
+    output_file("templates/stockticker.html")
+    p = figure(title="stock price: "+stockname, x_axis_label='time', y_axis_label='USD', x_axis_type = 'datetime')
+    date = list(pd.to_datetime(stockdf['Date']))
+    colors = ['blue','red','green','brown']
+    for feat in request.form.getlist('features[]'):
+        price = list(pd.to_datetime(stockdf[feat.encode('utf-8')]))
+        p.line(date, price, legend = stockname+':'+feat, line_width = 0.5, color = colors.pop(0))
+    save(p)
+    return render_template('stockticker.html')
 
 
 if __name__ == '__main__':
