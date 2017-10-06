@@ -30,7 +30,7 @@ def plotstockprices():
     script, div = components(p)
     #js_resources = INLINE.render_js()
     #css_resources = INLINE.render_css()
-    return render_template('templates/stockticker.html', plot_script = script, plot_div = div)
+    return render_template('stockticker.html', plot_script = script, plot_div = div)
 
 
 if __name__ == '__main__':
