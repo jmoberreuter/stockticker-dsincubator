@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request, redirect
 from bokeh.plotting import figure, output_file, show
 from bokeh.embed import components
-from bokeh.resources import INLINE
+#from bokeh.resources import INLINE
 import pandas as pd
 import requests
 import os
@@ -27,10 +27,10 @@ def plotstockprices():
     for feat in request.form.getlist('features[]'):
         price = list(stockdf[(stockdf.Date >= request.form['from']) & (stockdf.Date <= request.form['to'])][feat.encode('utf-8')])
         p.line(date, price, legend = stockname+': '+feat, line_width = 0.5, color = colors.pop(0))
-    bokehscript, bokehdiv = components(p)
-    js_resources = INLINE.render_js()
-    css_resources = INLINE.render_css()
-    return render_template('stockticker.html', plot_script = bokehscript, plot_div = bokehdiv, js_resources=js_resources, css_resources=css_resources)
+    script, div = components(p)
+    #js_resources = INLINE.render_js()
+    #css_resources = INLINE.render_css()
+    return render_template('stockticker.html', plot_script = script, plot_div = div)
 
 
 if __name__ == '__main__':

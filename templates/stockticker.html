@@ -19,7 +19,9 @@
         <div class="col-lg-12 text-left">
           <h2>Stock ticker</h2>
           <h4>You have asked plot</h1>
-          plot_div
+          
+          {{ script|safe }}
+          {{ div|safe }}
         </div>
       </div>
     </div>
@@ -30,6 +32,5 @@
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    plot_script
   </body>
 </html>
