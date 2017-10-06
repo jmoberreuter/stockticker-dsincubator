@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request, redirect
 from bokeh.plotting import figure, output_file, show
 from bokeh.embed import components
-form bokeh.resources import INLINE
+from bokeh.resources import INLINE
 import pandas as pd
 import requests
 import os
