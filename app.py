@@ -27,7 +27,7 @@ def plotstockprices():
         price = list(stockdf[(stockdf.Date >= request.form['from']) & (stockdf.Date <= request.form['to'])][feat.encode('utf-8')])
         p.line(date, price, legend = stockname+': '+feat, line_width = 0.5, color = colors.pop(0))
     bokehscript, bokehdiv = components(p)
-    return render_template('stockticker.html')
+    return render_template('stockticker.html', plot_script = 'bokehscript', plot_div = 'bokehdiv')
 
 
 if __name__ == '__main__':
